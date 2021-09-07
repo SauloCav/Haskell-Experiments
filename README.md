@@ -1,2 +1,3 @@
 # Haskell-Experiments
-Algumas atividades desenvolvidas em Haskell
+
+Algumas atividades desenvolvidas na disciplina Programação Funcional
