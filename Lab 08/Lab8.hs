@@ -9,23 +9,6 @@ import Functions
 import List
 import Maybe
 
--- Questão 19
--- instance Eq a => Eq (Maybe a) where  
-    -- Just x == Just y = x == y  
-    -- Nothing == Nothing = True  
-    -- _ == _ = False 
-
--- Questão 21
--- instance Ord a => Ord (Maybe a) where
-   -- Nothing <= _ = True
-   -- Just _ <= Nothing = False
-   -- Just x <= Just y = x <= y
-
--- Questão 22
--- instance Show a => Show (Maybe a) where 
-	-- newShow _ (Maybe Nothing)  = id
-	-- newShow n (Maybe (Just x)) = newShow n x
-
 main = program5
 
 program1 :: IO ()
@@ -54,3 +37,21 @@ program6 = getArgs >>= treatArgs where
 	treatArgst [xs , y] = readFile xs >>= putStrLn . concat . intercalate "\n" . cond (isInfixOf x xs) . lines
 	treatArgst _ = putStrLn "You must pass exactly two arguments."
 
+-- Extra Questions:
+
+-- Questão 19
+-- instance Eq a => Eq (Maybe a) where  
+    -- Just x == Just y = x == y  
+    -- Nothing == Nothing = True  
+    -- _ == _ = False 
+
+-- Questão 21
+-- instance Ord a => Ord (Maybe a) where
+   -- Nothing <= _ = True
+   -- Just _ <= Nothing = False
+   -- Just x <= Just y = x <= y
+
+-- Questão 22
+-- instance Show a => Show (Maybe a) where 
+	-- newShow _ (Maybe Nothing)  = id
+	-- newShow n (Maybe (Just x)) = newShow n x
