@@ -16,6 +16,56 @@ import qualified SeqTree as ST
 import qualified BSTree as BT
 import Either
 
+-- Quest 23
+-- instance Functor (ST.SeqTree k) where
+    -- fmap = map
+
+-- Quest 24
+-- instance Functor (Either a) where
+    -- fmap _ (Left x) = Left x
+    -- fmap f (Right y) = Right (f y)
+
+-- Quest 25
+-- sequences :: [a] -> [[a]]
+-- sequences (x:xs) = (map (x:) (sequences xs)) ++ (sequences xs)
+
+-- Quest 26
+-- subsets :: [a] -> [[a]]
+-- subsets [] = [[]]
+-- subsets (x:xs) = subsets xs ++ map (x:) (subsets xs)
+
+-- Quest 27
+-- sequenceA :: Applicative f => [f a] -> f [a]
+-- sequenceA [] = pure []
+-- sequenceA (x:xs) = (:) <$> x <*> sequenceA xs
+
+-- Quest 28
+-- instance Applicative (BT.BSTree k) where
+  -- pure x = let t = Branch t x t
+           -- in t
+  -- (<*>) (key, val) _ = (key, val)
+  -- (<*>) _ (key, val) = (key, val)
+  -- (<*>) (Branch lf f rf) (Branch la a ra) = Branch (lf <*> la) (f a) (rf <*> ra)
+
+-- Quest 29
+-- instance Applicative (BS.SeqTree k) where
+  -- pure x = let t = Branch t x t
+           -- in t
+  -- (<*>) (key, val) _ = (key, val)
+  -- (<*>) _ (key, val) = (key, val)
+  -- (<*>) (Branch lf f rf) (Branch la a ra) = Branch (lf <*> la) (f a) (rf <*> ra)
+
+-- Quest 30
+-- instance Applicative (Either a) where
+    -- pure x = Right x
+    -- Right g <*> Right x = Right (g x)
+    -- Right _ <*> Left a = Left a
+    -- Left a <*> _ = Left a
+
+-- Quest 31
+-- asum :: Alternative f => [f a] -> f a
+-- asum = foldr (<*>) empty
+
 ask :: [Char] -> IO [Char]
 ask _ = putStrLn "Enter your password: " *> getLine
 
@@ -57,5 +107,3 @@ strongPasswd = validPasswd >>= f where
 	incorrect = putStrLn "Weak password! Try again"
 
 main = strongPasswd
-
-
