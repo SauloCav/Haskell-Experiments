@@ -3,8 +3,6 @@ module Lab1 where
 import Prelude (Eq , (+) , (*) , Int )
 import List (foldl , foldr )
 
--- Lab1
-
 -- And (&&)
 opAnd :: Bool -> Bool -> Bool
 opAnd False _ = False
