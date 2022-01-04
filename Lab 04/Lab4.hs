@@ -14,40 +14,6 @@ import Maybe
 
 import qualified BSTree as BST
 
-{-
--- breadth
-breadth :: BSTree k v -> [(k, v)]
-breadth tr = bst [tr] where
-    bst [] = []
-    bst xs = map keyval xs ++ bst (concat (map lr xs))
-    keyval (Branch a _ _) = a
-    lr (Branch _ Empty Empty) = []
-    lr (Branch _ Empty b)     = [b]
-    lr (Branch _ a Empty)     = [a]
-    lr (Branch _ a b)         = [a,b]
-
--- leaves
-leaves :: BSTree k v -> Int
-leaves Empty = 0
-leaves (Branch _ Empty Empty) = 1
-leaves (Branch _ lt rt) = leaves lt + leaves rt
-
--- inOrder
-inOrder :: BSTree k v -> [(k, v)]
-inOrder Empty = []
-inOrder (Branch keyval lt rt) = inOrder lt ++ [keyval] ++ inOrder rt
-
--- preOrder
-preOrder :: BSTree k v -> [(k, v)]
-preOrder Empty = []
-preOrder (Branch keyval lt rt) = [keyval] ++ preOrder lt ++ preOrder rt
-
--- postOrder
-postOrder :: BSTree k v -> [(k, v)]
-postOrder Empty = []
-postOrder (Branch keyval lt rt) = postOrder lt ++ postOrder rt ++ [keyval]
--}
-
 -- remove
 removeList :: Eq a => a -> [a] -> [a]
 removeList _ [] = []
@@ -90,3 +56,39 @@ process = makeOutput . countWords . clean where
 -- main
 main :: IO ()
 main = readFile "heyjude.txt" >>= pure . process >>= putStrLn
+
+-- Extra Questions:
+
+{-
+-- breadth
+breadth :: BSTree k v -> [(k, v)]
+breadth tr = bst [tr] where
+    bst [] = []
+    bst xs = map keyval xs ++ bst (concat (map lr xs))
+    keyval (Branch a _ _) = a
+    lr (Branch _ Empty Empty) = []
+    lr (Branch _ Empty b)     = [b]
+    lr (Branch _ a Empty)     = [a]
+    lr (Branch _ a b)         = [a,b]
+
+-- leaves
+leaves :: BSTree k v -> Int
+leaves Empty = 0
+leaves (Branch _ Empty Empty) = 1
+leaves (Branch _ lt rt) = leaves lt + leaves rt
+
+-- inOrder
+inOrder :: BSTree k v -> [(k, v)]
+inOrder Empty = []
+inOrder (Branch keyval lt rt) = inOrder lt ++ [keyval] ++ inOrder rt
+
+-- preOrder
+preOrder :: BSTree k v -> [(k, v)]
+preOrder Empty = []
+preOrder (Branch keyval lt rt) = [keyval] ++ preOrder lt ++ preOrder rt
+
+-- postOrder
+postOrder :: BSTree k v -> [(k, v)]
+postOrder Empty = []
+postOrder (Branch keyval lt rt) = postOrder lt ++ postOrder rt ++ [keyval]
+-}
