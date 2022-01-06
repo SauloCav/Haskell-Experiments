@@ -16,6 +16,43 @@ type State = Int
 type Transition = (State, Char, State)
 data NFA = NFA [State] State [Transition] [State]
 
+nfa :: [State] -> State -> [Transition] -> [State] -> NFA
+nfa states s trs finals = NFA states s trs finals
+
+states :: NFA -> [State]
+states (NFA states _ _ _) = states
+
+currentState :: NFA -> State
+currentState (NFA _ s _ _) = s
+
+transitions :: NFA -> [Transition]
+transitions (NFA _ _ trs _) = trs
+
+finalStates :: NFA -> [State]
+finalStates (NFA _ _ _ finals ) = finals
+
+transition :: NFA -> Char -> [NFA]
+transition aut c = f <$> nextStates where
+	validTransitions = filter valid (transitions aut)
+	valid (st , c', _) = and [st == (currentState aut), c' == c]
+	nextStates = thd <$> validTransitions
+	thd (_, _, z) = z
+	f st = nfa (states aut) st (transitions aut) (finalStates aut)
+
+isAccepting :: NFA -> Bool
+isAccepting nfa = cond (isInList (currentState nfa) (finalStates nfa)) (True) (False) 
+
+isInList :: (Eq a) => a -> [a] -> Bool
+isInList x [] = False
+isInList x (y:ys) | x == y = True
+                  | otherwise = isInList x ys
+
+run :: NFA -> [Char] -> Bool
+run nfa xs = cond (or (map isAccepting fnfa)) (True) (False) where
+	fnfa = foldM transition nfa xs
+
+-- Extra Questions
+
 -- Quest 42
 -- instance Monad Maybe where
 -- return = Just
@@ -52,40 +89,3 @@ data NFA = NFA [State] State [Transition] [State]
 -- Quest 49
 -- mapM_ :: Monad m => (a -> m b) -> [a] -> m ()
 -- mapM_ f xs = sequenceA_ (map f xs)
-
-nfa :: [State] -> State -> [Transition] -> [State] -> NFA
-nfa states s trs finals = NFA states s trs finals
-
-states :: NFA -> [State]
-states (NFA states _ _ _) = states
-
-currentState :: NFA -> State
-currentState (NFA _ s _ _) = s
-
-transitions :: NFA -> [Transition]
-transitions (NFA _ _ trs _) = trs
-
-finalStates :: NFA -> [State]
-finalStates (NFA _ _ _ finals ) = finals
-
-transition :: NFA -> Char -> [NFA]
-transition aut c = f <$> nextStates where
-	validTransitions = filter valid (transitions aut)
-	valid (st , c', _) = and [st == (currentState aut), c' == c]
-	nextStates = thd <$> validTransitions
-	thd (_, _, z) = z
-	f st = nfa (states aut) st (transitions aut) (finalStates aut)
-
-isAccepting :: NFA -> Bool
-isAccepting nfa = cond (isInList (currentState nfa) (finalStates nfa)) (True) (False) 
-
-isInList :: (Eq a) => a -> [a] -> Bool
-isInList x [] = False
-isInList x (y:ys) | x == y = True
-                  | otherwise = isInList x ys
-
-run :: NFA -> [Char] -> Bool
-run nfa xs = cond (or (map isAccepting fnfa)) (True) (False) where
-	fnfa = foldM transition nfa xs
-
--- C:\Users\saulo\OneDrive\Área de Trabalho\faculnás 4\prog func\laboratorios\haskell-experiments
