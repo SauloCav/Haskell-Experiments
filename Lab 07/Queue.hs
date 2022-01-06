@@ -1,13 +1,4 @@
 
--- QUESTÃO 17:
--- Utilizar mergeAll ao invés de foldl possibilita uma maior eficiência 
--- principalmente pela sua forma de fazer merge de forma binária
--- (fazendo merge entre as atuais duas primeiras heaps). O emparelhamento
--- das heaps permite que a função pop seja implementada com um argumento de 
--- complexidade amortizada (seu custo médio é O(log n)). Como ao utilizar foldl  
--- a função merge é usada de forma a combinar os elementos de modo não emparelhado, 
--- o custo médio da função pop seria bem maior. 
-
 -- QUESTÃO 18:
 module Queue (Queue , empty , enqueue , dequeue ) where
 
