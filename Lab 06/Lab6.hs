@@ -10,10 +10,6 @@ import Maybe
 
 import qualified Graph as G
 
-
--- EU TENTEI!
-
-
 main :: IO ()
 main = readFile "g1.txt" >>= pure . process >>= putStrLn
 
@@ -39,5 +35,3 @@ hasCelebrity g = verify candidate where
 	candidate = foldl f h where
 		h = G.vertices g
 		f h@(x:xs) = cond (G.neighbors x == []) (x) (f xs)
-
--- C:\Users\saulo\OneDrive\Área de Trabalho\faculnás 4\prog func\laboratorios\haskell-experiments
