@@ -1,3 +1,3 @@
 # Haskell-Experiments
 
-Some activities and small projects developed in Haskell
+Some activities developed in Haskell
