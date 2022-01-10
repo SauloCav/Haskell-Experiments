@@ -23,7 +23,6 @@ getPasswd :: IO ([Char], [Char])
 getPasswd = do
 	p1 <- ask ""
 	p2 <- ask ""
-	-- pure ((,) <$> p1 <*> p2) 'failed idea'
 	pure (p1, p2)
 
 validPasswd :: IO [Char]
