@@ -64,5 +64,6 @@ lis xs = fromMaybe [] (maximalBy cmp (s <$> [0..n - 1] <*> pure xs)) where
 -- f _ 0 = 1
 -- f rec n = n * rec (n - 1)
 
+-- Quest 37
 -- fact :: Int -> Int
 -- fact x = fix $ f
