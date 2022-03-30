@@ -1,5 +1,4 @@
 
--- QUESTÃO 18:
 module Queue (Queue , empty , enqueue , dequeue ) where
 
 import Prelude (Show, Bool(True, False), error)
