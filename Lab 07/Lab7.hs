@@ -41,10 +41,10 @@ pop :: Ord k => Heap k v -> Heap k v
 pop Empty = Empty
 pop (Heap _ hs) = mergeAll hs
 
--- quickselect
--- quickselect :: Ord a => Int -> [a] -> a
--- quickselect k (x:xs) | k < l     = quickselect k ys
-                     -- | k > l     = quickselect (k-l-1) zs
-                     -- | k == l    = x where
-                     	-- (ys, zs) = span (< x) xs
-                     	-- l = length ys
+quickselect
+quickselect :: Ord a => Int -> [a] -> a
+quickselect k (x:xs) | k < l     = quickselect k ys
+                     | k > l     = quickselect (k-l-1) zs
+                     | k == l    = x where
+                     	(ys, zs) = span (< x) xs
+                     	l = length ys
