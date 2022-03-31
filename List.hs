@@ -7,15 +7,12 @@ import Prelude (
     seq)
 
 import Control.Applicative (Alternative(empty, (<|>)))
---import Control.Parallel
+import Control.Parallel
 
 import Bool
 import Functions
 import Maybe
 
--- Aula 1
-
--- And (&&)
 opAnd :: Bool -> Bool -> Bool
 opAnd False _ = False
 opAnd _ False = False
@@ -67,8 +64,6 @@ reverse xs = f xs [] where
     f [] acc = acc
     f (x:xs) acc = f xs (x:acc)
 
--- Aula 2
-
 take :: Int -> [a] -> [a]
 take 0 _ = []
 take _ [] = []
@@ -92,10 +87,6 @@ isPrefixOf (x:xs) (y:ys) = cond (x == y) (isPrefixOf xs ys) False
 zip :: [a] -> [b] -> [(a, b)]
 zip = zipWith (,)
 
--- Aula 3
-
--- takeWhile esta definido mais a frente
-
 dropWhile :: (a -> Bool) -> [a] -> [a]
 dropWhile _ [] = []
 dropWhile p xs = cond (p (head xs)) (dropWhile p (tail xs)) xs
@@ -107,8 +98,6 @@ span p l@(x:xs) = cond (p x) (x:ps, qs) ([], l) where
 
 break :: (a -> Bool) -> [a] -> ([a], [a])
 break p xs = span (not . p) xs
-
--- filter esta definido mais a frente
 
 foldl :: (b -> a -> b) -> b -> [a] -> b
 foldl _ acc [] = acc
@@ -128,7 +117,6 @@ filter :: (a -> Bool) -> [a] -> [a]
 filter p xs = foldr f [] xs where
     f x ys = cond (p x) (x:ys) ys
 
--- split
 split :: Eq a => a -> [a] -> [[a]]
 split _ [] = []
 split x [y] = cond (x == y) [] [[y]]
@@ -136,12 +124,10 @@ split x ys = ps : split x qs where
     (ps, qs) = f ys
     f = span (/=x) . dropWhile (==x)
 
--- lines
 lines :: [Char] -> [[Char]]
 lines [] = []
 lines xs = split '\n' xs
 
--- words
 words :: [Char] -> [[Char]]
 words [] = []
 words xs = split ' ' xs
@@ -169,21 +155,18 @@ remove x = filter (/=x)
 repeat :: a -> [a]
 repeat x = x : repeat x
 
--- mergesort 
 mergesort :: Ord a => [a] -> [a]
 mergesort [] = []
 mergesort [x] = [x]
 mergesort xs = merge (mergesort ys) (mergesort zs)
   where (ys, zs) = splitt xs
 
--- merge
 merge :: Ord a => [a] -> [a] -> [a]
 merge [] [] = []
 merge xs [] = xs
 merge [] ys = ys
 merge l@(x:xs) m@(y:ys) = cond (x <= y) (x : merge xs m) (y : merge l ys)
 
--- splitt
 splitt :: [a] -> ([a], [a])
 splitt [] = ([], [])
 splitt [x] = ([x], [])
@@ -245,21 +228,16 @@ chunks _ [] = []
 chunks k xs = ps : chunks k qs where
     (ps, qs) = splitAt k xs
 
--- cycle
 cycle :: [a] -> [a]
 cycle [] = []
 cycle xs = ys where
     ys = xs ++ ys
-
-{-
 
 parChunks :: Int -> [a] -> [[a]]
 parChunks k = parallel . chunks k where
     parallel [] = []
     parallel l@(xs:xss) = par (force xs) (pseq (parallel xss) l)
 
-
--- breadth
 breadth :: BSTree k v -> [(k, v)]
 breadth tr = bst [tr] where
     bst [] = []
@@ -270,24 +248,19 @@ breadth tr = bst [tr] where
     lr (Branch _ a Empty)     = [a]
     lr (Branch _ a b)         = [a,b]
 
--- leaves
 leaves :: BSTree k v -> Int
 leaves Empty = 0
 leaves (Branch _ Empty Empty) = 1
 leaves (Branch _ lt rt) = leaves lt + leaves rt
 
--- inOrder
 inOrder :: BSTree k v -> [(k, v)]
 inOrder Empty = []
 inOrder (Branch keyval lt rt) = inOrder lt ++ [keyval] ++ inOrder rt
 
--- preOrder
 preOrder :: BSTree k v -> [(k, v)]
 preOrder Empty = []
 preOrder (Branch keyval lt rt) = [keyval] ++ preOrder lt ++ preOrder rt
 
--- postOrder
 postOrder :: BSTree k v -> [(k, v)]
 postOrder Empty = []
 postOrder (Branch keyval lt rt) = postOrder lt ++ postOrder rt ++ [keyval]
--}
