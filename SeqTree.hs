@@ -35,8 +35,6 @@ rightTree Empty = Empty
 rightTree (Leaf _) = Empty
 rightTree (Branch _ _ _ rtree) = rtree
 
--- Aqui o L representa "menor que" e o G "maior ou igual"
--- As duas letras representam a comparação de um elemento em relação a dois outros.
 data Ordering = LL | LG | GL | GG
 
 compare :: Ord a => a -> a -> a -> Ordering
@@ -101,9 +99,6 @@ map f (Branch _ _ ltree rtree) = makeBranch ltree' rtree' where
 empty :: SeqTree a
 empty = Empty
 
-------------------------------------------------------
---Lab5.hs
-
 (!!) :: [a] -> Int -> a
 [] !! _ = error " (!!):   empty   list "
 (x:_) !! 0 = x
@@ -113,4 +108,3 @@ empty = Empty
 [] !? _ = Nothing
 (x:_) !? 0 = Just(x)
 (_:xs) !? k = xs !? (k - 1)
-------------------------------------------------------
