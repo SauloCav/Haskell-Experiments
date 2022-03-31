@@ -1,9 +1,7 @@
 module Bool where
 
 import Prelude(Bool(True, False), Applicative(pure))
-
 import Control.Applicative (Alternative(empty))
-
 import Functions
 
 not :: Bool -> Bool
