@@ -18,31 +18,25 @@ import Maybe
 data BSTree k v = Empty
                 | Branch (k, v) (BSTree k v) (BSTree k v)
 
-------------------------------------------------------
 foldl :: (b -> a -> b) -> b -> [a] -> b
 foldl _ acc [] = acc
 foldl f acc (x:xs) = foldl f (f acc x) xs
-------------------------------------------------------
-------------------------------------------------------
+
 zip :: [a] -> [b] -> [(a, b)]
 zip = zipWith (,)
-------------------------------------------------------
-------------------------------------------------------
+
 zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
 zipWith f [] _ = []
 zipWith f _ [] = []
 zipWith f (x:xs) (y:ys) = f x y : zipWith f xs ys
-------------------------------------------------------
-------------------------------------------------------
+
 concat :: [[a]] -> [a]
 concat [] = []
 concat (xs:xss) = xs ++ concat xss
-------------------------------------------------------
-------------------------------------------------------
+
 mapp :: (a -> b) -> [a] -> [b]
 mapp f [] = []
 mapp f (x:xs) = f x : mapp f xs
-------------------------------------------------------
 
 empty :: BSTree k v
 empty = Empty
@@ -112,9 +106,9 @@ map f (Branch (key, val) ltree rtree) =
         ltree' = map f ltree
         rtree' = map f rtree
 
---inOrderr :: BSTree k v -> [(k, v)]
---inOrderr Empty = []
---inOrderr (Branch keyval lt rt) = inOrderr lt ++ (keyval : inOrderr rt)
+inOrderr :: BSTree k v -> [(k, v)]
+inOrderr Empty = []
+inOrderr (Branch keyval lt rt) = inOrderr lt ++ (keyval : inOrderr rt)
 
 instance (Eq k, Eq v) => Eq (BSTree k v) where
     Empty == Empty = True
@@ -126,7 +120,6 @@ instance (Eq k, Eq v) => Eq (BSTree k v) where
 instance Functor (BSTree k) where
     fmap = map
 
--- breadth
 breadth :: BSTree k v -> [(k, v)]
 breadth tr = bst [tr] where
     bst [] = []
@@ -137,23 +130,19 @@ breadth tr = bst [tr] where
     lr (Branch _ a Empty)     = [a]
     lr (Branch _ a b)         = [a,b]
 
--- leaves
 leaves :: BSTree k v -> Int
 leaves Empty = 0
 leaves (Branch _ Empty Empty) = 1
 leaves (Branch _ lt rt) = leaves lt + leaves rt
 
--- inOrder
 inOrder :: BSTree k v -> [(k, v)]
 inOrder Empty = []
 inOrder (Branch keyval lt rt) = inOrder lt ++ [keyval] ++ inOrder rt
 
--- preOrder
 preOrder :: BSTree k v -> [(k, v)]
 preOrder Empty = []
 preOrder (Branch keyval lt rt) = [keyval] ++ preOrder lt ++ preOrder rt
 
--- postOrder
 postOrder :: BSTree k v -> [(k, v)]
 postOrder Empty = []
 postOrder (Branch keyval lt rt) = postOrder lt ++ postOrder rt ++ [keyval]
