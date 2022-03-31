@@ -10,8 +10,6 @@ import Control.Applicative (Alternative(empty, (<|>)))
 import Bool
 import Functions
 
--- Aula 4
-
 data Maybe a = Nothing | Just a deriving Show
 
 maybe :: b -> (a -> b) -> Maybe a -> b
