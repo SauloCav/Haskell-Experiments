@@ -12,7 +12,7 @@ import Functions
 import List
 import Maybe
 
--- Problema 1
+-- Problem I
 
 sumFinalDigits :: [Char] -> Int
 sumFinalDigits [] = 0
@@ -39,7 +39,7 @@ sumIsCorrect :: [Char] -> Bool
 sumIsCorrect (xs) = cond (sumFinalDigits (take 8 xs) == getDigit (drop 8 xs)) (True) (False)
 
 
--- Problema 2
+-- Problem II
 
 until :: (a -> Bool) -> (a -> a) -> a -> a
 until pre f x | pre x = x
@@ -54,7 +54,7 @@ sqrt x = until goodEnough improve x where
 			      else imp ((z + (y/z))/ 2) y
 	    epsilon = 0.00001
 
--- Problema 3
+-- Problem III
 
 data Nat = Zero | Suc Nat
 
