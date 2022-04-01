@@ -89,7 +89,11 @@ Well, the lis implementation presented is correct, but extremely inefficient. An
 The ultimate goal of this lab is to rewrite lis so that s has signature Int -> [a], and then create a cache for s.</br>
 
 <strong>Lab 11:</strong></br></br>
-
+In this lab, we will build definitions to work with non-deterministic finite automata. For this, we will use the following type.</br>
+In NFA, the first field represents the set of automaton states, while the second represents its current state. This differs a little from the usual definition of an automaton, but it makes the implementation easier. The third field is the list of transitions of the automaton, while the fourth represents its set of final states. In addition, we define a series of auxiliary functions for this type.</br>
+With them, we can define a function that makes the automaton “consume” a character. In our representation of this concept, the automaton will not change its state, but will produce new automata, each one representing the result of a possible transition.</br>
+To proceed with the lab activities, implement two functions: isAccepting :: NFA -> Bool and run :: NFA -> [Char] -> Bool. While the first function makes its purpose clear, the second should make an automaton consume a list of characters, and in the end determine if this was accepted by the automaton. For ease of writing, we recommend the implementation of foldM, proposed in Exercise 45. Since the list represents non-determinism as a monad, run can be written in terms of foldM. Take a good look at the transition signature.</br>
+Finally, create two automata, using the framework developed here. The first automaton must accept binary representations of even numbers, while the second one accepts binary strings that have 010 as a substring. Note that, in both cases, any other values ​​of Char must imply the rejection of the string.</br>
 
 <strong>Trab 01:</strong></br>
 Problem I:</br>
