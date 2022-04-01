@@ -69,7 +69,14 @@ In our third task, we are going to modify the content of Lab4.hs, which was deve
 Finally, the fourth task is to develop program6, which takes exactly two arguments: a string str and the name of a file file. This program should print only the lines of the file that contain str as a substring. The isInfixOf function, proposed in Exercise 2, can be used for this filtering. That done, add a case where program6 takes exactly one argument, and prints only the lines typed on the keyboard that have str as a substring. We have implemented a (very) simplified version of the grep command. We can even use program6 in combination with the operating system's pipe.</br>
 
 <strong>Lab 09:</strong></br>
-
+Let's develop a program that “registers” a password. For verification reasons, the program asks for it to be typed twice and, as long as there is a discrepancy, it asks again.</br>
+The first thing we need is a function ask :: [Char] -> IO [Char], which prints its argument to the screen and returns a line read from the keyboard, inside IO. To construct ask, the putStrLn, getLine and (*>) functions are useful.</br>
+With ask in hand, let's build getPasswd :: IO([Char], [Char]), an action that returns a pair of strings in IO. The idea here is not that complicated: we need to build a pair, but within IO. The operator (,) constructs simple pairs, and we can use it to construct a pair in IO, since IO is an instance of Functor and Applicative. We know that (,) x y constructs a pair of type (a, b), since x :: a and y :: b. Case x :: IO a and y :: IO b, how could we use (,), (<$>) and (<*>) to construct IO (a, b)? To answer the question, just make x and y two ask calls, with strings that tell the user if it is the first (x) or second (y) time they are typing the password.</br>
+We have implemented getPasswd, but we still need to validate that the two strings entered are the same. We do this in validPasswd, a recursive action that only terminates upon receiving two identical strings. Its implementation is given below.</br>
+Now that we know how to get a valid password, implement main::IO() and test your program. But the lab isn't over yet.</br>
+In Data.Char, there are some very useful predicates, which test whether a Char is a certain type of character, such as lowercase, uppercase, or digit. We say that a password is strong if it has at least eight characters and there is, among them, a lowercase letter, an uppercase letter and a digit. Write a function isStrong ::[Char] -> Bool, which determines whether a password is strong.</br>
+Once isStrong is implemented, write the action strongPasswd :: IO [Char], which uses validPasswd to obtain valid passwords and returns, within IO, the first one that is strong. The definition of validPasswd is a good model for strongPasswd.</br>
+Adapt your main and test your program. Now the lab is over.</br>
 
 <strong>Lab 10:</strong></br>
 
