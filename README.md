@@ -88,7 +88,7 @@ Another interesting thing to note is candidates. Note that candidates seem to be
 Well, the lis implementation presented is correct, but extremely inefficient. And I need to use memo and fix to create a cache for s. However, there is an obstacle: memo expects to receive a function Int -> b, and this is not the signature of s.</br>
 The ultimate goal of this lab is to rewrite lis so that s has signature Int -> [a], and then create a cache for s.</br>
 
-<strong>Lab 11:</strong></br></br>
+<strong>Lab 11:</strong></br>
 In this lab, we will build definitions to work with non-deterministic finite automata. For this, we will use the following type.</br>
 In NFA, the first field represents the set of automaton states, while the second represents its current state. This differs a little from the usual definition of an automaton, but it makes the implementation easier. The third field is the list of transitions of the automaton, while the fourth represents its set of final states. In addition, we define a series of auxiliary functions for this type.</br>
 With them, we can define a function that makes the automaton “consume” a character. In our representation of this concept, the automaton will not change its state, but will produce new automata, each one representing the result of a possible transition.</br>
@@ -102,7 +102,7 @@ Write an addSum function that, given an eight-digit string, adds the two check d
 Write a valid function that, given a ten-digit string, checks whether it is a valid card identifier. This is quite simple when using the take function.</br>
 
 Problem II:</br>
-The first part of this problem, which will be useful for the second, is to implement the function until :: (a -> Bool) -> (a -> a) -> a -> a. The until function takes two functions: the first is a p predicate, and the second is a f function that transforms elements of type a. In addition, it receives an element x of type a. If x satisfies the predicate p, then until returns x. Otherwise, until recursively tests the predicate p for f x. It is quite simple to implement until with the help of iterate, proposed in Exercise 10.</br>
+The first part of this problem, which will be useful for the second, is to implement the function until :: (a -> Bool) -> (a -> a) -> a -> a. The until function takes two functions: the first is a p predicate, and the second is a f function that transforms elements of type a. In addition, it receives an element x of type a. If x satisfies the predicate p, then until returns x. Otherwise, until recursively tests the predicate p for f x.</br>
 To implement goodEnough, determine whether the absolute value of y*y is close enough to x. We suggest a precision of six decimal places. To implement improve, it may be useful to search for some formula based on Newton's method (or on the secant method).</br>
 
 Problem III:</br>
