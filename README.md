@@ -17,11 +17,11 @@
 2. Now, we generalize the group function to groupBy, making group equivalent to groupBy (==). Implement groupBy :: (a -> a -> Bool) -> [a] -> [[a]].
 3. Implement the all and any functions, both with signature (a -> Bool) -> [a] -> Bool, which decide, respectively, whether all or some element of a list satisfies the predicate given as input. Note that they can be given as compositions of and, or and map.
 4. Write the function merge :: Ord a => [a] -> [a] -> [a] which, given two sorted lists as input, returns an sorted list with all elements of the received lists.
-5. Write the function split :: [a] -> ([a], [a]) which, given a list xs as input, returns two lists: the first contains the elements of the odd positions of xs, and the second the elements of the even positions of xs. Here, we are assuming that the head of a list is at position 1.
+5. Write the function split :: [a] -> ([a], [a]) which, given a list xs as input, returns two lists: the first contains the elements of the odd positions of xs, and the second the elements of the even positions of xs.
 6. Now, using merge and split, implemented earlier, develop the function mergesort :: Ord a => [a] -> [a].
 
 <strong>Lab 04:</strong></br>
-For this lab, we are going to use the auxiliary file heyjude.txt, which contains the lyrics of that song. As you may have noticed, the Lab4.hs file contains a module called Main. This indicates that we are going to create a Lab4 executable.</br>
+For this lab, we are going to use the auxiliary file heyjude.txt, which contains the lyrics of that song. As you may have noticed, the Lab4.hs file contains a module called Main.</br>
 The following activities should be a guide for developing a program that prints the word occurrence count in the heyjude.txt file.
 1. Write the function remove :: Eq a => a -> [a] -> [a], which removes all occurrences of a certain element in a list. Note that remove can be implemented as a filter call.
 2. Write the function split :: Eq a => a -> [a] -> [[a]] which, given an element x and a list ys, returns the sublists of ys between the occurrences of x. For example, split 0 [0, 1, 2, 0, 2, 5, 7, 0, 0, 0, 3, 0] == [[1, 2], [2, 5, 7], [3] ]. The span and dropWhile functions are very useful here.
