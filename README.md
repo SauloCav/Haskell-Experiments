@@ -32,11 +32,16 @@ Write implementations for clean and countWords. The clean function must remove t
 6. With all the functions developed, we are ready to finalize our program. Now, just compile Lab4.hs and check the executable output.
 
 <strong>Lab 05:</strong></br>
-Let's create a program that instead of printing the words in alphabetical order, we will print them in descending order of frequency, ie, the words with the highest number of occurrences will be printed first.
+Let's create a program that instead of printing the words in alphabetical order, we will print them in descending order of frequency, ie, the words with the highest number of occurrences will be printed first.</br>
 For that, it is necessary to create an auxiliary function sortBy, which sorts a list according to a comparator, also given as input.
 
-
 <strong>Lab 06:</strong></br>
+Let's work with graphs. In particular, we are going to develop a program that solves the Celebrity Problem, a classic of program marathons.
+Given a graph G = (V, E), we say that a vertex v ∈ V is a celebrity if every other vertex “knows” v and v “knows” nobody. Note that a graph has at most one celebrity. Here, we are using “u knows v” to indicate the existence of the edge (u, v) ∈ E.</br>
+However, the g1.txt file contains the encoding of a graph, rather than arbitrary content. Its first line contains an integer, indicating the number of vertices. The other lines contain exactly two integers, indicating the ends of the edges.</br>
+Let's use a very simple solution to the problem. As a graph has at most one celebrity, at first we want to find a celebrity candidate vertex. This can be done with a stack, and lists fulfill that role. We put all the vertices in a stack. If there are at least two vertices in the stack, say u and v, we check whether the edge (u, v) exists: if it does, u “knows” someone and cannot be a celebrity; otherwise, v is not “known” by another vertex and cannot be a celebrity. In both cases, we eliminate one vertex and the other goes back onto the stack. When we have a single vertex in the stack, that will be our candidate. We need to return the candidate inside a Maybe, so we can handle the case of the empty stack (list).</br>
+In this definition, maybe saves us from explicitly handling the Maybe cases. The value cond1 indicates whether all other vertices “know” the candidate, while cond2 indicates whether the candidate “knows” some other vertex. The and, or, zipWith, G.hasEdge, repeat and remove functions are useful to define them.</br>
+Here, the executable should already be ready. Test it out by modifying the g1.txt content to do so. Once you are sure of the behavior of the program, change it so that the celebrity (if there is one) is displayed as output.
 
 
 <strong>Lab 07:</strong></br>
