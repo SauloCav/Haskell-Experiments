@@ -79,7 +79,14 @@ Once isStrong is implemented, write the action strongPasswd :: IO [Char], which 
 Adapt your main and test your program. Now the lab is over.</br>
 
 <strong>Lab 10:</strong></br>
-
+In this lab, we are going to solve the longest increasing subsequence problem. Given a sequence of naturals, we would like to find the largest increasing subsequence of that sequence. For example, given the sequence 10, 22, 9, 33, 21, 50, 41, 60, 80, its longest increasing subsequence is 10, 22, 33, 41, 60, 80.</br>
+First, develop maximum ::Ord a => [a] -> Maybe a, which returns the largest element of a list if it is not empty. Just use foldl and (<=). However, we will need to make use of a generic version of maximum. To do so, implement the maximalBy :: (a -> a -> Bool) -> [a] -> Maybe a function, such that maximalBy (>=) is equivalent to maximum.</br>
+Now, let's create a naive solution to the problem at hand. Given a sequence of natural n x0, x1, . . . , xn−1, we create the following note ̧c ̃ao: si represents the largest increasing subsequence starting with xi , for 0 ≤ i ≤ n − 1.</br>
+We can define s in terms of itself: clearly, sn−1 is a unitary sequence containing xn−1; for 0 ≤ i ≤ n − 2, si starts with xi , and can follow with the elements of sj , i < j ≤ n − 1, provided that xi ≤ xj . Certainly, we define si using, among all possible sj, the one that represents the largest subsequence. Finally, it is easy to choose the largest increasing subsequence among si , 0 ≤ i ≤ k − 1. This solution can be implemented as follows.</br>
+At first, the function s seems to receive more arguments than necessary, after all, it is indexed only by 0 ≤ i ≤ n − 1. However, receiving the list as the second argument allows us to treat the case referring to itself , for some 0 < i ≤ n − 1, with drop.</br>
+Another interesting thing to note is candidates. Note that candidates seem to be dealing with subsequences from lists other than xs. Not really, but the way candidates behave, the indices passed to s can refer to positions in suffixes of xs, and thus cannot be interpreted absolutely, like the indices of s.</br>
+Well, the lis implementation presented is correct, but extremely inefficient. And I need to use memo and fix to create a cache for s. However, there is an obstacle: memo expects to receive a function Int -> b, and this is not the signature of s.</br>
+The ultimate goal of this lab is to rewrite lis so that s has signature Int -> [a], and then create a cache for s.</br>
 
 <strong>Lab 11:</strong></br></br>
 
