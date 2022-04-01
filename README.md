@@ -21,20 +21,38 @@
 6. Now, using merge and split, implemented earlier, develop the function mergesort :: Ord a => [a] -> [a].
 
 <strong>Lab 04:</strong></br>
+For this lab, we are going to use the auxiliary file heyjude.txt, which contains the lyrics of that song. As you may have noticed, the Lab4.hs file contains a module called Main. This indicates that we are going to create a Lab4 executable.</br>
+The following activities should be a guide for developing a program that prints the word occurrence count in the heyjude.txt file.
+1. Write the function remove :: Eq a => a -> [a] -> [a], which removes all occurrences of a certain element in a list. Note that remove can be implemented as a filter call.
+2. Write the function split :: Eq a => a -> [a] -> [[a]] which, given an element x and a list ys, returns the sublists of ys between the occurrences of x. For example, split 0 [0, 1, 2, 0, 2, 5, 7, 0, 0, 0, 3, 0] == [[1, 2], [2, 5, 7], [3] ]. The span and dropWhile functions are very useful here.
+3. Use the split function to write the lines and words functions, both with signature [Char] -> [[Char]]. The lines (words) function must partition a string into substrings that represent its lines (words). Remember that lines are separated by '\n' and words by ' '.
+4. Write the function count :: [[Char]] -> BST.BSTree [Char] Int which, given a list of strings, returns a binary search tree where the keys are these strings and each one is valued by the number of times that occurs in the list. The foldr, BST.empty, BST.contains, BST.insert and BST.update functions are very useful for this.
+5. Let's develop the process :: [Char] -> [Char] function, which joins all the parts of our program. Essentially, process will clean the input string, removing unwanted characters, count the occurrence of words and then prepare the output of the program, which is its return.
+Write implementations for clean and countWords. The clean function must remove the characters ',', '(', ')', '?' and '!', and this can be done with a composition of removes. The countWords function must build the tree with the word occurrence count, and this can be expressed as a composition of the lines, words, map, concat and count functions.</br>
+6. With all the functions developed, we are ready to finalize our program. Now, just compile Lab4.hs and check the executable output.
 
 <strong>Lab 05:</strong></br>
+Let's create a program that instead of printing the words in alphabetical order, we will print them in descending order of frequency, ie, the words with the highest number of occurrences will be printed first.
+For that, it is necessary to create an auxiliary function sortBy, which sorts a list according to a comparator, also given as input.
+
 
 <strong>Lab 06:</strong></br>
 
+
 <strong>Lab 07:</strong></br>
+
 
 <strong>Lab 08:</strong></br>
 
+
 <strong>Lab 09:</strong></br>
+
 
 <strong>Lab 10:</strong></br>
 
+
 <strong>Lab 11:</strong></br></br>
+
 
 <strong>Trab 01:</strong></br>
 Problem I:</br>
