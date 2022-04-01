@@ -29,6 +29,11 @@
 
 <strong>Lab 10:</strong></br>
 
-<strong>Lab 11:</strong></br>
+<strong>Lab 11:</strong></br></br>
+
+<strong>Trab 01:</strong></br>
+<strong>Problem I:</strong></br>
+<strong>Problem II:</strong></br>
+<strong>Problem III:</strong></br>
 
 *Some labs are incomplete*
