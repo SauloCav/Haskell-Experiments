@@ -1,4 +1,4 @@
-# Haskell-Experiments
+# Haskell Experiments
 
 <strong>Lab 01:</strong></br>
 1. Rewrite the length, (++), concat and reverse functions as calls to foldl or foldr (whichever seems more appropriate).
